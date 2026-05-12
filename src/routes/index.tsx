@@ -15,9 +15,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "254787429828";
-const waLink = (msg: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 type Product = {
   name: string;

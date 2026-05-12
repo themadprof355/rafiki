@@ -97,14 +97,9 @@ export function SiteFooter() {
             Explore
           </h4>
           <ul className="grid grid-cols-2 gap-y-1.5">
-            {navLinks.concat([
-              { to: "/quote", label: "Get a Quote" },
-              { to: "/delivery", label: "Free Delivery" },
-              { to: "/installation-guide", label: "Install Guide" },
-              { to: "/corrugated-11-3", label: "Corrugated 11/3" },
-            ] as const).map((l) => (
+            {[...navLinks, ...footerExtraLinks].map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="text-primary-foreground/80 hover:text-primary-foreground">
+                <Link to={l.to as string} className="text-primary-foreground/80 hover:text-primary-foreground">
                   {l.label}
                 </Link>
               </li>

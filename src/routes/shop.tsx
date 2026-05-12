@@ -14,14 +14,15 @@ export const Route = createFileRoute("/shop")({
   component: ShopPage,
 });
 
-const products = [
+type ShopProduct = { name: string; per: number; rows: [string, number][]; tag?: string };
+const products: ShopProduct[] = [
   { name: "Corrugated Iron Sheets", per: 350, rows: [["2 M", 700], ["2.5 M", 850], ["3 M", 1050]], tag: "Most popular" },
   { name: "Versatile Iron Sheets (G30)", per: 550, rows: [["2 M", 1100], ["2.5 M", 1350], ["3 M", 1650]], tag: "Premium" },
   { name: "Ordinary Dumuzas (G30)", per: 300, rows: [["2 M", 600], ["2.5 M", 750], ["3 M", 900]] },
   { name: "Box Profile Gauge 30", per: 400, rows: [["2 M", 800], ["2.5 M", 1000], ["3 M", 1200]] },
   { name: "Reject Ordinary Mabati", per: 0, rows: [["2 M", 300], ["2.5 M", 350], ["3 M", 450]], tag: "Best Value" },
   { name: "Reject Box Profile", per: 0, rows: [["2 M", 400], ["2.5 M", 500], ["3 M", 600]] },
-] as const;
+];
 
 function ShopPage() {
   return (

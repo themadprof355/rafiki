@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/rafiki-logo.jpg";
 import hero from "@/assets/hero-mabati.jpg";
-import { Phone, MessageCircle, ShieldCheck, Truck, Hammer, MapPin, Check } from "lucide-react";
+import { ShieldCheck, Truck, Hammer, Check, MessageCircle } from "lucide-react";
+import { SiteHeader, SiteFooter, CTASection, waLink } from "@/components/site/shared";
 
 export const Route = createFileRoute("/")({
   head: () => ({

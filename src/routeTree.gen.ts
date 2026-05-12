@@ -9,8 +9,81 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as RoofingAccessoriesRouteImport } from './routes/roofing-accessories'
+import { Route as ResidentialRoofingRouteImport } from './routes/residential-roofing'
+import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as MabatiPricesKenyaRouteImport } from './routes/mabati-prices-kenya'
+import { Route as InstallationGuideRouteImport } from './routes/installation-guide'
+import { Route as DeliveryRouteImport } from './routes/delivery'
+import { Route as Corrugated113RouteImport } from './routes/corrugated-11-3'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as CommercialIndustrialRoofingRouteImport } from './routes/commercial-industrial-roofing'
+import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoofingAccessoriesRoute = RoofingAccessoriesRouteImport.update({
+  id: '/roofing-accessories',
+  path: '/roofing-accessories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResidentialRoofingRoute = ResidentialRoofingRouteImport.update({
+  id: '/residential-roofing',
+  path: '/residential-roofing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuoteRoute = QuoteRouteImport.update({
+  id: '/quote',
+  path: '/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MabatiPricesKenyaRoute = MabatiPricesKenyaRouteImport.update({
+  id: '/mabati-prices-kenya',
+  path: '/mabati-prices-kenya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstallationGuideRoute = InstallationGuideRouteImport.update({
+  id: '/installation-guide',
+  path: '/installation-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeliveryRoute = DeliveryRouteImport.update({
+  id: '/delivery',
+  path: '/delivery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Corrugated113Route = Corrugated113RouteImport.update({
+  id: '/corrugated-11-3',
+  path: '/corrugated-11-3',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommercialIndustrialRoofingRoute =
+  CommercialIndustrialRoofingRouteImport.update({
+    id: '/commercial-industrial-roofing',
+    path: '/commercial-industrial-roofing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +92,200 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/commercial-industrial-roofing': typeof CommercialIndustrialRoofingRoute
+  '/contact-us': typeof ContactUsRoute
+  '/corrugated-11-3': typeof Corrugated113Route
+  '/delivery': typeof DeliveryRoute
+  '/installation-guide': typeof InstallationGuideRoute
+  '/mabati-prices-kenya': typeof MabatiPricesKenyaRoute
+  '/projects': typeof ProjectsRoute
+  '/quote': typeof QuoteRoute
+  '/residential-roofing': typeof ResidentialRoofingRoute
+  '/roofing-accessories': typeof RoofingAccessoriesRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/commercial-industrial-roofing': typeof CommercialIndustrialRoofingRoute
+  '/contact-us': typeof ContactUsRoute
+  '/corrugated-11-3': typeof Corrugated113Route
+  '/delivery': typeof DeliveryRoute
+  '/installation-guide': typeof InstallationGuideRoute
+  '/mabati-prices-kenya': typeof MabatiPricesKenyaRoute
+  '/projects': typeof ProjectsRoute
+  '/quote': typeof QuoteRoute
+  '/residential-roofing': typeof ResidentialRoofingRoute
+  '/roofing-accessories': typeof RoofingAccessoriesRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/commercial-industrial-roofing': typeof CommercialIndustrialRoofingRoute
+  '/contact-us': typeof ContactUsRoute
+  '/corrugated-11-3': typeof Corrugated113Route
+  '/delivery': typeof DeliveryRoute
+  '/installation-guide': typeof InstallationGuideRoute
+  '/mabati-prices-kenya': typeof MabatiPricesKenyaRoute
+  '/projects': typeof ProjectsRoute
+  '/quote': typeof QuoteRoute
+  '/residential-roofing': typeof ResidentialRoofingRoute
+  '/roofing-accessories': typeof RoofingAccessoriesRoute
+  '/shop': typeof ShopRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/commercial-industrial-roofing'
+    | '/contact-us'
+    | '/corrugated-11-3'
+    | '/delivery'
+    | '/installation-guide'
+    | '/mabati-prices-kenya'
+    | '/projects'
+    | '/quote'
+    | '/residential-roofing'
+    | '/roofing-accessories'
+    | '/shop'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about-us'
+    | '/commercial-industrial-roofing'
+    | '/contact-us'
+    | '/corrugated-11-3'
+    | '/delivery'
+    | '/installation-guide'
+    | '/mabati-prices-kenya'
+    | '/projects'
+    | '/quote'
+    | '/residential-roofing'
+    | '/roofing-accessories'
+    | '/shop'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/commercial-industrial-roofing'
+    | '/contact-us'
+    | '/corrugated-11-3'
+    | '/delivery'
+    | '/installation-guide'
+    | '/mabati-prices-kenya'
+    | '/projects'
+    | '/quote'
+    | '/residential-roofing'
+    | '/roofing-accessories'
+    | '/shop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
+  CommercialIndustrialRoofingRoute: typeof CommercialIndustrialRoofingRoute
+  ContactUsRoute: typeof ContactUsRoute
+  Corrugated113Route: typeof Corrugated113Route
+  DeliveryRoute: typeof DeliveryRoute
+  InstallationGuideRoute: typeof InstallationGuideRoute
+  MabatiPricesKenyaRoute: typeof MabatiPricesKenyaRoute
+  ProjectsRoute: typeof ProjectsRoute
+  QuoteRoute: typeof QuoteRoute
+  ResidentialRoofingRoute: typeof ResidentialRoofingRoute
+  RoofingAccessoriesRoute: typeof RoofingAccessoriesRoute
+  ShopRoute: typeof ShopRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roofing-accessories': {
+      id: '/roofing-accessories'
+      path: '/roofing-accessories'
+      fullPath: '/roofing-accessories'
+      preLoaderRoute: typeof RoofingAccessoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/residential-roofing': {
+      id: '/residential-roofing'
+      path: '/residential-roofing'
+      fullPath: '/residential-roofing'
+      preLoaderRoute: typeof ResidentialRoofingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quote': {
+      id: '/quote'
+      path: '/quote'
+      fullPath: '/quote'
+      preLoaderRoute: typeof QuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mabati-prices-kenya': {
+      id: '/mabati-prices-kenya'
+      path: '/mabati-prices-kenya'
+      fullPath: '/mabati-prices-kenya'
+      preLoaderRoute: typeof MabatiPricesKenyaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/installation-guide': {
+      id: '/installation-guide'
+      path: '/installation-guide'
+      fullPath: '/installation-guide'
+      preLoaderRoute: typeof InstallationGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delivery': {
+      id: '/delivery'
+      path: '/delivery'
+      fullPath: '/delivery'
+      preLoaderRoute: typeof DeliveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corrugated-11-3': {
+      id: '/corrugated-11-3'
+      path: '/corrugated-11-3'
+      fullPath: '/corrugated-11-3'
+      preLoaderRoute: typeof Corrugated113RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-industrial-roofing': {
+      id: '/commercial-industrial-roofing'
+      path: '/commercial-industrial-roofing'
+      fullPath: '/commercial-industrial-roofing'
+      preLoaderRoute: typeof CommercialIndustrialRoofingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +298,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
+  CommercialIndustrialRoofingRoute: CommercialIndustrialRoofingRoute,
+  ContactUsRoute: ContactUsRoute,
+  Corrugated113Route: Corrugated113Route,
+  DeliveryRoute: DeliveryRoute,
+  InstallationGuideRoute: InstallationGuideRoute,
+  MabatiPricesKenyaRoute: MabatiPricesKenyaRoute,
+  ProjectsRoute: ProjectsRoute,
+  QuoteRoute: QuoteRoute,
+  ResidentialRoofingRoute: ResidentialRoofingRoute,
+  RoofingAccessoriesRoute: RoofingAccessoriesRoute,
+  ShopRoute: ShopRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

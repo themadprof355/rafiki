@@ -6,7 +6,8 @@ export const WHATSAPP = "254787429828";
 export const waLink = (msg: string) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
-const navLinks = [
+type NavLink = { to: string; label: string };
+const navLinks: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/shop", label: "Shop" },
   { to: "/mabati-prices-kenya", label: "Prices" },
@@ -16,7 +17,13 @@ const navLinks = [
   { to: "/projects", label: "Projects" },
   { to: "/about-us", label: "About" },
   { to: "/contact-us", label: "Contact" },
-] as const;
+];
+const footerExtraLinks: NavLink[] = [
+  { to: "/quote", label: "Get a Quote" },
+  { to: "/delivery", label: "Free Delivery" },
+  { to: "/installation-guide", label: "Install Guide" },
+  { to: "/corrugated-11-3", label: "Corrugated 11/3" },
+];
 
 export function SiteHeader() {
   return (

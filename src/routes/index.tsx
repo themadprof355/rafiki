@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/rafiki-logo.jpg";
 import hero from "@/assets/hero-mabati.jpg";
-import { Phone, MessageCircle, ShieldCheck, Truck, Hammer, MapPin, Check } from "lucide-react";
+import { ShieldCheck, Truck, Hammer, Check, MessageCircle } from "lucide-react";
+import { SiteHeader, SiteFooter, CTASection, waLink } from "@/components/site/shared";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,9 +15,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "254787429828";
-const waLink = (msg: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 type Product = {
   name: string;
@@ -95,32 +92,7 @@ const products: Product[] = [
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <a href="#top" className="flex items-center gap-3">
-            <img src={logo} alt="Rafiki Roofing Mabati logo" className="h-11 w-11 rounded-md object-cover" />
-            <div className="leading-tight">
-              <div className="text-base font-extrabold tracking-tight">Rafiki Roofing</div>
-              <div className="text-xs text-muted-foreground">Mabati — Kenya</div>
-            </div>
-          </a>
-          <nav className="hidden gap-6 text-sm font-medium md:flex">
-            <a href="#products" className="hover:text-primary">Products</a>
-            <a href="#why" className="hover:text-primary">Why Us</a>
-            <a href="#contact" className="hover:text-primary">Contact</a>
-          </nav>
-          <a
-            href={waLink("Hello Rafiki Roofing, I'd like to order mabati.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold text-secondary-foreground shadow-sm transition hover:brightness-95"
-          >
-            <MessageCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">WhatsApp</span> Order
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
       <section id="top" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
@@ -241,42 +213,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section id="contact" className="relative overflow-hidden py-20" style={{ background: "var(--gradient-yellow)" }}>
-        <div className="mx-auto max-w-4xl px-4 text-center text-primary">
-          <h2 className="text-3xl font-extrabold md:text-4xl">Ready to roof your project?</h2>
-          <p className="mx-auto mt-3 max-w-xl text-primary/80">
-            All orders and questions are handled directly on WhatsApp — fast replies, real prices.
-          </p>
-          <a
-            href={waLink("Hello Rafiki Roofing, I'd like to make an order.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-bold text-primary-foreground shadow-xl transition hover:scale-[1.02]"
-          >
-            <MessageCircle className="h-5 w-5" /> Chat on WhatsApp
-          </a>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold">
-            <a href={`tel:+${WHATSAPP}`} className="inline-flex items-center gap-2 hover:underline">
-              <Phone className="h-4 w-4" /> +254 787 429 828
-            </a>
-            <span className="inline-flex items-center gap-2">
-              <MapPin className="h-4 w-4" /> Serving customers across Kenya
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border bg-primary py-8 text-primary-foreground">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 md:flex-row">
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="" className="h-9 w-9 rounded-md object-cover" />
-            <span className="text-sm font-semibold">© {new Date().getFullYear()} Rafiki Roofing Mabati</span>
-          </div>
-          <span className="text-xs text-primary-foreground/70">Quality roofing. Honest prices.</span>
-        </div>
-      </footer>
+      <CTASection title="Ready to roof your project?" />
+      <SiteFooter />
     </div>
   );
 }

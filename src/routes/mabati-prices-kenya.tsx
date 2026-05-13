@@ -14,12 +14,12 @@ export const Route = createFileRoute("/mabati-prices-kenya")({
 });
 
 const rows = [
-  { name: "Corrugated", per: 350, m2: 700, m25: 850, m3: 1050 },
-  { name: "Versatile G30", per: 550, m2: 1100, m25: 1350, m3: 1650 },
-  { name: "Ordinary Dumuzas G30", per: 300, m2: 600, m25: 750, m3: 900 },
-  { name: "Box Profile G30", per: 400, m2: 800, m25: 1000, m3: 1200 },
-  { name: "Reject Ordinary", per: null, m2: 300, m25: 350, m3: 450 },
-  { name: "Reject Box Profile", per: null, m2: 400, m25: 500, m3: 600 },
+  { name: "Corrugated", image: "/images/Corrugated-mabati.jpeg", per: 350, m2: 700, m25: 850, m3: 1050 },
+  { name: "Versatile G30", image: "/images/Versatile-mabati.jpeg", per: 550, m2: 1100, m25: 1350, m3: 1650 },
+  { name: "Ordinary Dumuzas G30", image: "/images/Ordinary-mabati.jpeg", per: 300, m2: 600, m25: 750, m3: 900 },
+  { name: "Box Profile G30", image: "/images/Box-profile-mabati.jpeg", per: 400, m2: 800, m25: 1000, m3: 1200 },
+  { name: "Reject Ordinary", image: "/images/Ordinary%20mabati.jpeg", per: null, m2: 300, m25: 350, m3: 450 },
+  { name: "Reject Box Profile", image: "/images/Box%20profile%20mabati.jpeg", per: null, m2: 400, m25: 500, m3: 600 },
 ];
 
 function PricesPage() {
@@ -36,7 +36,7 @@ function PricesPage() {
           <table className="w-full text-left text-sm">
             <thead className="bg-muted text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
-                <th className="px-4 py-3">Profile</th>
+                <th className="px-4 py-3">Product</th>
                 <th className="px-4 py-3">Per metre</th>
                 <th className="px-4 py-3">2 M</th>
                 <th className="px-4 py-3">2.5 M</th>
@@ -46,7 +46,19 @@ function PricesPage() {
             <tbody>
               {rows.map((r) => (
                 <tr key={r.name} className="border-t border-border">
-                  <td className="px-4 py-3 font-bold text-primary">{r.name}</td>
+                  <td className="px-4 py-3">
+                    <div className="flex min-w-48 items-center gap-3">
+                      <img
+                        src={r.image}
+                        alt={r.name}
+                        className="h-14 w-20 rounded-lg object-cover"
+                        loading="lazy"
+                        width={160}
+                        height={112}
+                      />
+                      <span className="font-bold text-primary">{r.name}</span>
+                    </div>
+                  </td>
                   <td className="px-4 py-3">{r.per ? `Ksh ${r.per}` : "—"}</td>
                   <td className="px-4 py-3">Ksh {r.m2.toLocaleString()}</td>
                   <td className="px-4 py-3">Ksh {r.m25.toLocaleString()}</td>

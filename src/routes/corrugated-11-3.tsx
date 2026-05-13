@@ -25,6 +25,13 @@ function CorrugatedPage() {
       />
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-2">
         <div>
+          <img
+            src="/images/Corrugated-mabati.jpeg"
+            alt="Corrugated 11/3 Iron Sheets"
+            className="mb-8 aspect-[4/3] w-full rounded-2xl object-cover shadow-[var(--shadow-elegant)]"
+            width={900}
+            height={675}
+          />
           <h2 className="text-2xl font-extrabold">Specifications</h2>
           <ul className="mt-5 space-y-3 text-sm">
             {[

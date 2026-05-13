@@ -72,14 +72,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Rafiki Roofing Mabati" },
+      { name: "description", content: "Quality mabati and iron sheets in Kenya. Order corrugated, box profile, versatile and dumuzas roofing sheets on WhatsApp." },
+      { name: "author", content: "Rafiki Roofing Mabati" },
+      { property: "og:title", content: "Rafiki Roofing Mabati" },
+      { property: "og:description", content: "Quality mabati and iron sheets in Kenya with transparent prices and WhatsApp ordering." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

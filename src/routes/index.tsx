@@ -6,7 +6,7 @@ import { SiteHeader, SiteFooter, CTASection, waLink } from "@/components/site/sh
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rafiki Roofing Mabati — Quality Iron Sheets in Kenya" },
+      { title: "Rafiki Roofing Mabati - Quality Iron Sheets in Kenya" },
       { name: "description", content: "Affordable corrugated, versatile, box profile & dumuzas iron sheets. Order via WhatsApp +254 787 429828." },
       { property: "og:title", content: "Rafiki Roofing Mabati" },
       { property: "og:description", content: "Quality iron sheets at honest prices. Order on WhatsApp." },
@@ -15,10 +15,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-
 type Product = {
   name: string;
   tagline: string;
+  image: string;
   perMetre: number;
   rows: { length: string; price: number }[];
   badge?: string;
@@ -27,7 +27,8 @@ type Product = {
 const products: Product[] = [
   {
     name: "Corrugated Iron Sheets",
-    tagline: "Classic wave profile — strong & affordable",
+    tagline: "Classic wave profile - strong & affordable",
+    image: "/images/Corrugated-mabati.jpeg",
     perMetre: 350,
     rows: [
       { length: "2 M", price: 700 },
@@ -37,7 +38,8 @@ const products: Product[] = [
   },
   {
     name: "Versatile Iron Sheets",
-    tagline: "Gauge 30 — premium, modern finish",
+    tagline: "Gauge 30 - premium, modern finish",
+    image: "/images/Versatile-mabati.jpeg",
     perMetre: 550,
     badge: "Premium",
     rows: [
@@ -48,7 +50,8 @@ const products: Product[] = [
   },
   {
     name: "Ordinary Dumuzas Iron Sheets",
-    tagline: "Gauge 30 — reliable everyday roofing",
+    tagline: "Gauge 30 - reliable everyday roofing",
+    image: "/images/Ordinary-mabati.jpeg",
     perMetre: 300,
     rows: [
       { length: "2 M", price: 600 },
@@ -59,6 +62,7 @@ const products: Product[] = [
   {
     name: "Box Profile Gauge 30",
     tagline: "Sleek box profile, neat finish",
+    image: "/images/Box-profile-mabati.jpeg",
     perMetre: 400,
     rows: [
       { length: "2 M", price: 800 },
@@ -68,7 +72,8 @@ const products: Product[] = [
   },
   {
     name: "Reject Ordinary Mabati",
-    tagline: "Budget-friendly — great for stores & sheds",
+    tagline: "Budget-friendly - great for stores & sheds",
+    image: "/images/Ordinary%20mabati.jpeg",
     perMetre: 0,
     badge: "Best Value",
     rows: [
@@ -80,6 +85,7 @@ const products: Product[] = [
   {
     name: "Reject Box Profile",
     tagline: "Budget box profile sheets",
+    image: "/images/Box%20profile%20mabati.jpeg",
     perMetre: 0,
     rows: [
       { length: "2 M", price: 400 },
@@ -94,7 +100,6 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
 
-      {/* Hero */}
       <section id="top" className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
         <div className="absolute inset-0 opacity-30">
           <img src={hero} alt="" className="h-full w-full object-cover" width={1600} height={900} />
@@ -109,7 +114,7 @@ function Index() {
               Quality <span style={{ color: "var(--brand-yellow)" }}>Mabati</span> at Honest Prices
             </h1>
             <p className="mt-5 max-w-xl text-base text-primary-foreground/85 md:text-lg">
-              Corrugated, versatile, box profile and dumuzas iron sheets — sold by the metre.
+              Corrugated, versatile, box profile and dumuzas iron sheets - sold by the metre.
               Fast service, simple ordering, straight on WhatsApp.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -137,7 +142,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Products */}
       <section id="products" className="mx-auto max-w-6xl px-4 py-20">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-extrabold md:text-4xl">Our Mabati & Prices</h2>
@@ -150,46 +154,57 @@ function Index() {
           {products.map((p) => (
             <article
               key={p.name}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
             >
-              {p.badge && (
-                <span className="absolute right-4 top-4 rounded-full bg-secondary px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-secondary-foreground">
-                  {p.badge}
-                </span>
-              )}
-              <h3 className="text-xl font-bold text-primary">{p.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                  loading="lazy"
+                  width={640}
+                  height={480}
+                />
+              </div>
+              <div className="relative flex flex-1 flex-col p-6">
+                {p.badge && (
+                  <span className="absolute right-4 top-4 rounded-full bg-secondary px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-secondary-foreground">
+                    {p.badge}
+                  </span>
+                )}
+                <h3 className="pr-20 text-xl font-bold text-primary">{p.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
 
-              {p.perMetre > 0 && (
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl font-extrabold">Ksh {p.perMetre}</span>
-                  <span className="text-sm text-muted-foreground">/ metre</span>
-                </div>
-              )}
+                {p.perMetre > 0 && (
+                  <div className="mt-4 flex items-baseline gap-1">
+                    <span className="text-3xl font-extrabold">Ksh {p.perMetre}</span>
+                    <span className="text-sm text-muted-foreground">/ metre</span>
+                  </div>
+                )}
 
-              <ul className="mt-5 space-y-2 border-t border-border pt-5">
-                {p.rows.map((r) => (
-                  <li key={r.length} className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">{r.length}</span>
-                    <span className="font-bold">Ksh {r.price.toLocaleString()}</span>
-                  </li>
-                ))}
-              </ul>
+                <ul className="mt-5 space-y-2 border-t border-border pt-5">
+                  {p.rows.map((r) => (
+                    <li key={r.length} className="flex items-center justify-between text-sm">
+                      <span className="text-muted-foreground">{r.length}</span>
+                      <span className="font-bold">Ksh {r.price.toLocaleString()}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <a
-                href={waLink(`Hello Rafiki Roofing, I'd like to order ${p.name}.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition group-hover:bg-secondary group-hover:text-secondary-foreground"
-              >
-                <MessageCircle className="h-4 w-4" /> Order this
-              </a>
+                <a
+                  href={waLink(`Hello Rafiki Roofing, I'd like to order ${p.name}.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition group-hover:bg-secondary group-hover:text-secondary-foreground"
+                >
+                  <MessageCircle className="h-4 w-4" /> Order this
+                </a>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      {/* Why us */}
       <section id="why" className="bg-muted/50 py-20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-12 text-center">

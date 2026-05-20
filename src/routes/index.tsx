@@ -1,10 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { MessageCircle, Phone, ShieldCheck, Truck, Droplet, Users, Clock, MapPin, Check } from "lucide-react";
-import logo from "@/assets/kentank-logo.png";
-import tankVertical from "@/assets/tank-vertical.jpg";
-import tankSmall from "@/assets/tank-small.jpg";
-import tankLineup from "@/assets/tank-lineup.jpg";
+import {
+  MessageCircle,
+  Phone,
+  ShieldCheck,
+  Truck,
+  Users,
+  Clock,
+  MapPin,
+  Check,
+  Ruler,
+  Palette,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -15,36 +22,68 @@ const PHONE_DISPLAY = "+254 752 552 018";
 const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 type Product = {
-  litres: number;
-  priceKsh: number;
+  name: string;
+  image: string;
   use: string;
   benefits: string[];
   badge?: string;
 };
 
 const products: Product[] = [
-  { litres: 1000, priceKsh: 6500, use: "Small Households", benefits: ["Compact design", "Easy installation", "Ideal for single-family homes"] },
-  { litres: 2000, priceKsh: 10500, use: "Family Homes", benefits: ["Popular choice", "Fits most compounds", "Great for 5-8 people"], badge: "Popular" },
-  { litres: 3000, priceKsh: 14500, use: "Large Families", benefits: ["Extended water supply", "Low maintenance", "UV-resistant material"] },
-  { litres: 4000, priceKsh: 18500, use: "Rental Properties", benefits: ["Serves multiple units", "Durable multi-rib design", "Long lifespan"] },
-  { litres: 5000, priceKsh: 24500, use: "Small Businesses", benefits: ["Reliable daily supply", "Heavy-duty construction", "Weather-resistant"], badge: "Best Value" },
-  { litres: 6000, priceKsh: 27500, use: "Commercial Use", benefits: ["High-volume storage", "Stable base design", "Chemical-free liner"] },
-  { litres: 8000, priceKsh: 32500, use: "Schools & Institutions", benefits: ["Large community supply", "Industrial-grade", "Low evaporation"] },
-  { litres: 10000, priceKsh: 45500, use: "Farms & Agriculture", benefits: ["Irrigation ready", "Livestock water supply", "Rugged outdoor tank"], badge: "Farm Favourite" },
-  { litres: 16000, priceKsh: 67500, use: "Large Farms & Industry", benefits: ["Massive reserve", "Industrial-grade walls", "Minimal footprint"] },
-  { litres: 20000, priceKsh: 98500, use: "Industrial & Estate", benefits: ["Estate-level supply", "Backed by warranty", "Fire reserve capable"] },
-  { litres: 24000, priceKsh: 135000, use: "Industrial / Government", benefits: ["Maximum capacity", "Heavy-duty ribbed walls", "Long-term investment"] },
+  {
+    name: "Box Profile Mabati",
+    image: "/images/Box profile mabati.jpeg",
+    use: "Modern homes & commercial roofs",
+    benefits: ["Clean angular profile", "Strong water run-off", "Available in multiple gauges"],
+    badge: "Popular",
+  },
+  {
+    name: "Corrugated Mabati",
+    image: "/images/Corrugated-mabati.jpeg",
+    use: "Homes, stores & farm structures",
+    benefits: [
+      "Classic roofing profile",
+      "Lightweight and practical",
+      "Great for fast installation",
+    ],
+  },
+  {
+    name: "Romantile Mabati",
+    image: "/images/Romantile-mabati.jpeg",
+    use: "Premium residential roofing",
+    benefits: ["Tile-look finish", "Elegant curb appeal", "Durable coated sheets"],
+    badge: "Premium Look",
+  },
+  {
+    name: "Versatile Mabati",
+    image: "/images/Versatile-mabati.jpeg",
+    use: "Bungalows & maisonettes",
+    benefits: ["Distinctive tile pattern", "Neat overlap lines", "Ideal for visible roof designs"],
+  },
+  {
+    name: "Ordinary Mabati",
+    image: "/images/Ordinary-mabati.jpeg",
+    use: "Budget builds & extensions",
+    benefits: ["Affordable roofing option", "Reliable everyday cover", "Easy to replace or extend"],
+    badge: "Best Value",
+  },
+  {
+    name: "Roofing Tiles Mabati",
+    image: "/images/Roofing-tiles-mabati.jpeg",
+    use: "Decorative roof finishes",
+    benefits: ["Tile-inspired appearance", "Weather-ready surface", "Suited to statement roofs"],
+  },
 ];
 
-const tankImageFor = (litres: number) =>
-  litres <= 1500 ? tankSmall : litres <= 5000 ? tankVertical : tankLineup;
+const heroImage = "/images/Box-profile-mabati.jpeg";
+const detailImage = "/images/Corrugated mabati.jpeg";
 
 function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
-      <Sizes />
+      <Profiles />
       <Trust />
       <OrderForm />
       <WhyUs />
@@ -60,18 +99,30 @@ function HomePage() {
 function Header() {
   const nav = [
     { href: "#home", label: "Home" },
-    { href: "#sizes", label: "Sizes" },
+    { href: "#profiles", label: "Profiles" },
     { href: "#why", label: "Why Choose Us" },
     { href: "#order", label: "Order" },
     { href: "#faq", label: "FAQ" },
     { href: "#contact", label: "Contact" },
   ];
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur" id="home">
+    <header
+      className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur"
+      id="home"
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <a href="#home" className="flex items-center gap-3">
-          <img src={logo} alt="Kentank logo" className="h-10 w-auto md:h-12" />
-          <span className="sr-only">Kentank Tanks</span>
+          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-lg font-extrabold text-primary-foreground shadow-sm">
+            R
+          </span>
+          <span className="leading-tight">
+            <span className="block text-sm font-extrabold text-primary md:text-base">
+              Rafiki Roofing
+            </span>
+            <span className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Mabati
+            </span>
+          </span>
         </a>
         <nav className="hidden items-center gap-6 text-sm font-semibold lg:flex">
           {nav.map((n) => (
@@ -88,7 +139,7 @@ function Header() {
             <Phone className="h-4 w-4" /> Call
           </a>
           <a
-            href={wa("Hello, I want to enquire about a Kentank water tank.")}
+            href={wa("Hello, I want to enquire about Rafiki Roofing Mabati.")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold text-secondary-foreground shadow transition hover:brightness-95"
@@ -108,19 +159,21 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-2 md:py-20">
         <div className="text-primary">
           <span className="inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-foreground">
-            Kentank Tanks Supplier
+            Rafiki Roofing Mabati
           </span>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
-            Reliable Kentank Water Tanks Delivered Near You
+            Quality Mabati Roofing Sheets Delivered Near You
           </h1>
           <p className="mt-4 max-w-lg text-base text-primary/85 md:text-lg">
-            Strong, long-lasting Kentank water tanks for homes, farms, schools and
-            businesses. Choose your size and order on WhatsApp — fast replies and
-            delivery assistance available.
+            Shop box profile, corrugated, ordinary, versatile and tile-look mabati for homes,
+            rentals, shops and site projects. Send your roof details on WhatsApp for quick guidance,
+            pricing and delivery assistance.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a
-              href={wa("Hello, I want to order a Kentank water tank. Size: ____. Quantity: ____. Location: ____.")}
+              href={wa(
+                "Hello, I want to order Rafiki Roofing Mabati. Profile: ____. Gauge: ____. Quantity/metres: ____. Location: ____.",
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-bold text-primary-foreground shadow-[var(--shadow-elegant)] transition hover:scale-[1.02]"
@@ -135,16 +188,22 @@ function Hero() {
             </a>
           </div>
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 text-sm font-semibold text-primary/85 sm:flex sm:flex-wrap sm:gap-x-6">
-            <li className="inline-flex items-center gap-1.5"><Check className="h-4 w-4" /> 1,000 – 24,000 L</li>
-            <li className="inline-flex items-center gap-1.5"><Check className="h-4 w-4" /> Genuine quality</li>
-            <li className="inline-flex items-center gap-1.5"><Check className="h-4 w-4" /> Delivery help</li>
+            <li className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4" /> Multiple profiles
+            </li>
+            <li className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4" /> Gauge options
+            </li>
+            <li className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4" /> Delivery help
+            </li>
           </ul>
         </div>
         <div className="relative">
           <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
           <img
-            src={tankLineup}
-            alt="Kentank water tanks lineup"
+            src={heroImage}
+            alt="Rafiki Roofing Mabati box profile sheets"
             className="relative w-full rounded-2xl border-4 border-primary/20 object-cover shadow-2xl"
           />
         </div>
@@ -153,19 +212,19 @@ function Hero() {
   );
 }
 
-/* ---------- Sizes ---------- */
-function Sizes() {
+/* ---------- Profiles ---------- */
+function Profiles() {
   return (
-    <section id="sizes" className="bg-background py-16 md:py-20">
+    <section id="profiles" className="bg-background py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <SectionHeading
-          eyebrow="Tank Sizes"
-          title="Pick Your Kentank Size"
-          subtitle="From compact home tanks to industrial-grade reserves. Tap any size to order on WhatsApp."
+          eyebrow="Mabati Profiles"
+          title="Choose Your Roofing Style"
+          subtitle="Browse common Rafiki Roofing Mabati profiles and send your preferred sheet type, gauge, colour and location on WhatsApp."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
-            <ProductCard key={p.litres} product={p} />
+            <ProductCard key={p.name} product={p} />
           ))}
         </div>
       </div>
@@ -174,7 +233,7 @@ function Sizes() {
 }
 
 function ProductCard({ product }: { product: Product }) {
-  const msg = `Hello, I want to order/enquire about a Kentank water tank. Size: ${product.litres}L. Quantity: 1. Location: [your location].`;
+  const msg = `Hello, I want to order/enquire about Rafiki Roofing Mabati. Profile: ${product.name}. Gauge: [your gauge]. Colour: [your colour]. Quantity/metres: [amount]. Location: [your location].`;
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
       {product.badge && (
@@ -184,18 +243,18 @@ function ProductCard({ product }: { product: Product }) {
       )}
       <div className="aspect-[4/3] overflow-hidden bg-muted">
         <img
-          src={tankImageFor(product.litres)}
-          alt={`Kentank ${product.litres} litre water tank`}
+          src={product.image}
+          alt={`Rafiki Roofing Mabati ${product.name}`}
           className="h-full w-full object-cover transition group-hover:scale-105"
           loading="lazy"
         />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-baseline justify-between gap-2">
-          <h3 className="text-2xl font-extrabold text-primary">
-            {product.litres.toLocaleString()}<span className="text-base font-bold"> L</span>
-          </h3>
-          <span className="text-sm font-semibold text-muted-foreground">{product.use}</span>
+          <h3 className="text-xl font-extrabold text-primary">{product.name}</h3>
+          <span className="max-w-[8rem] text-right text-sm font-semibold text-muted-foreground">
+            {product.use}
+          </span>
         </div>
         <ul className="mt-3 space-y-1.5 text-sm text-foreground/80">
           {product.benefits.map((b) => (
@@ -210,7 +269,7 @@ function ProductCard({ product }: { product: Product }) {
           rel="noopener noreferrer"
           className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground transition hover:brightness-110"
         >
-          <MessageCircle className="h-4 w-4" /> Order This Size
+          <MessageCircle className="h-4 w-4" /> Enquire About This Profile
         </a>
       </div>
     </article>
@@ -220,17 +279,41 @@ function ProductCard({ product }: { product: Product }) {
 /* ---------- Trust ---------- */
 function Trust() {
   const items = [
-    { icon: ShieldCheck, title: "Durable Storage", desc: "Strong, UV-resistant tanks built to last for years." },
-    { icon: Users, title: "Homes, Farms, Schools", desc: "Sizes for households, businesses and institutions." },
-    { icon: MessageCircle, title: "Easy WhatsApp Ordering", desc: "Send your location and size — we reply fast." },
-    { icon: Truck, title: "Delivery Assistance", desc: "We help arrange delivery to your site." },
-    { icon: Droplet, title: "Multiple Capacities", desc: "From 1,000 L to 24,000 L — pick what suits you." },
-    { icon: ShieldCheck, title: "Long-Lasting Design", desc: "Heavy-duty multi-rib walls with stable bases." },
+    {
+      icon: ShieldCheck,
+      title: "Durable Sheets",
+      desc: "Roofing profiles selected for tough Kenyan weather.",
+    },
+    {
+      icon: Users,
+      title: "Homes, Rentals & Sites",
+      desc: "Options for residential, commercial and farm structures.",
+    },
+    {
+      icon: MessageCircle,
+      title: "Easy WhatsApp Ordering",
+      desc: "Send your location, profile, gauge and quantity for a fast reply.",
+    },
+    {
+      icon: Truck,
+      title: "Delivery Assistance",
+      desc: "We help arrange delivery to your construction site.",
+    },
+    {
+      icon: Ruler,
+      title: "Profile & Gauge Advice",
+      desc: "Get help choosing a practical sheet style for your roof.",
+    },
+    {
+      icon: Palette,
+      title: "Colour Options",
+      desc: "Ask about available colours and finishes before ordering.",
+    },
   ];
   return (
     <section className="border-y border-border bg-muted/40 py-16">
       <div className="mx-auto max-w-6xl px-4">
-        <SectionHeading eyebrow="Why Kentank" title="Built For Real Kenyan Homes & Businesses" />
+        <SectionHeading eyebrow="Why Rafiki Roofing" title="Built For Real Kenyan Roofs" />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
             <div key={it.title} className="rounded-2xl border border-border bg-card p-6">
@@ -249,23 +332,33 @@ function Trust() {
 
 /* ---------- Order Form ---------- */
 function OrderForm() {
-  const [form, setForm] = useState({ name: "", location: "", size: "2000", quantity: "1", note: "" });
+  const [form, setForm] = useState({
+    name: "",
+    location: "",
+    profile: products[0].name,
+    gauge: "",
+    quantity: "",
+    note: "",
+  });
   const [error, setError] = useState<string | null>(null);
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
-    setForm({ ...form, [k]: e.target.value });
+  const set =
+    (k: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setForm({ ...form, [k]: e.target.value });
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.location.trim() || !form.size || !form.quantity) {
-      setError("Please fill in your name, location, tank size and quantity.");
+    if (!form.name.trim() || !form.location.trim() || !form.profile || !form.quantity) {
+      setError("Please fill in your name, location, mabati profile and quantity.");
       return;
     }
     setError(null);
-    const msg = `Hello, I want to order a Kentank water tank.
+    const msg = `Hello, I want to order Rafiki Roofing Mabati.
 Name: ${form.name.trim()}
 Location: ${form.location.trim()}
-Size: ${form.size}L
-Quantity: ${form.quantity}
+Profile: ${form.profile}
+Gauge/colour: ${form.gauge.trim() || "-"}
+Quantity/metres: ${form.quantity}
 Note: ${form.note.trim() || "-"}`;
     window.open(wa(msg), "_blank", "noopener");
   };
@@ -277,33 +370,83 @@ Note: ${form.note.trim() || "-"}`;
           <span className="inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-foreground">
             Order Now
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Send Your Kentank Order on WhatsApp</h2>
-          <p className="mt-2 text-primary/80">Fill in a few details and we'll reply on WhatsApp with confirmation and delivery info.</p>
+          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">
+            Send Your Mabati Order on WhatsApp
+          </h2>
+          <p className="mt-2 text-primary/80">
+            Fill in a few roof details and we'll reply on WhatsApp with confirmation, pricing and
+            delivery info.
+          </p>
         </div>
-        <form onSubmit={submit} className="mt-8 space-y-4 rounded-2xl border border-primary/15 bg-background p-6 shadow-xl md:p-8">
+        <form
+          onSubmit={submit}
+          className="mt-8 space-y-4 rounded-2xl border border-primary/15 bg-background p-6 shadow-xl md:p-8"
+        >
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Your name">
-              <input required maxLength={80} value={form.name} onChange={set("name")} className="kt-input" placeholder="Jane Wanjiku" />
+              <input
+                required
+                maxLength={80}
+                value={form.name}
+                onChange={set("name")}
+                className="kt-input"
+                placeholder="Jane Wanjiku"
+              />
             </Field>
             <Field label="Location">
-              <input required maxLength={120} value={form.location} onChange={set("location")} className="kt-input" placeholder="Ruiru, Kiambu" />
+              <input
+                required
+                maxLength={120}
+                value={form.location}
+                onChange={set("location")}
+                className="kt-input"
+                placeholder="Ruiru, Kiambu"
+              />
             </Field>
-            <Field label="Tank size">
-              <select value={form.size} onChange={set("size")} className="kt-input">
+            <Field label="Mabati profile">
+              <select value={form.profile} onChange={set("profile")} className="kt-input">
                 {products.map((p) => (
-                  <option key={p.litres} value={p.litres}>{p.litres.toLocaleString()} L — {p.use}</option>
+                  <option key={p.name} value={p.name}>
+                    {p.name} — {p.use}
+                  </option>
                 ))}
               </select>
             </Field>
-            <Field label="Quantity">
-              <input type="number" min={1} max={200} required value={form.quantity} onChange={set("quantity")} className="kt-input" />
+            <Field label="Gauge / colour">
+              <input
+                maxLength={80}
+                value={form.gauge}
+                onChange={set("gauge")}
+                className="kt-input"
+                placeholder="Gauge 30, charcoal grey"
+              />
+            </Field>
+            <Field label="Quantity / metres">
+              <input
+                required
+                maxLength={80}
+                value={form.quantity}
+                onChange={set("quantity")}
+                className="kt-input"
+                placeholder="40 sheets or 120 metres"
+              />
             </Field>
           </div>
           <Field label="Optional note">
-            <textarea rows={3} maxLength={400} value={form.note} onChange={set("note")} className="kt-input" placeholder="Preferred delivery date, accessories, etc." />
+            <textarea
+              rows={3}
+              maxLength={400}
+              value={form.note}
+              onChange={set("note")}
+              className="kt-input"
+              placeholder="Roof size, preferred delivery date, ridges, valleys, screws, etc."
+            />
           </Field>
           {error && <p className="text-sm font-semibold text-destructive">{error}</p>}
-          <button type="submit" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-base font-bold text-primary-foreground transition hover:brightness-110">
+          <button
+            type="submit"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-base font-bold text-primary-foreground transition hover:brightness-110"
+          >
             <MessageCircle className="h-5 w-5" /> Send Order on WhatsApp
           </button>
           <p className="text-center text-xs text-muted-foreground">
@@ -320,8 +463,14 @@ Note: ${form.note.trim() || "-"}`;
 function WhyUs() {
   const points = [
     { title: "Fast response", desc: "We reply quickly on WhatsApp during business hours." },
-    { title: "Genuine quality tanks", desc: "Strong, food-grade Kentank water tanks." },
-    { title: "Help choosing the right size", desc: "Tell us your household or use-case and we'll recommend." },
+    {
+      title: "Quality roofing profiles",
+      desc: "Box profile, corrugated, ordinary, versatile and tile-look mabati.",
+    },
+    {
+      title: "Help choosing the right profile",
+      desc: "Tell us your building type and roof plan and we'll recommend practical options.",
+    },
     { title: "Simple WhatsApp ordering", desc: "No long forms — just chat and confirm." },
     { title: "Call support available", desc: "Prefer talking? Call us directly any time." },
   ];
@@ -329,7 +478,11 @@ function WhyUs() {
     <section id="why" className="bg-background py-16 md:py-20">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:items-center">
         <div>
-          <SectionHeading eyebrow="Why Choose Us" title="Trusted Kentank Tank Supplier in Kenya" left />
+          <SectionHeading
+            eyebrow="Why Choose Us"
+            title="Trusted Rafiki Roofing Mabati Supplier in Kenya"
+            left
+          />
           <ul className="mt-8 space-y-4">
             {points.map((p) => (
               <li key={p.title} className="flex gap-3 rounded-xl border border-border bg-card p-4">
@@ -345,7 +498,11 @@ function WhyUs() {
           </ul>
         </div>
         <div className="relative">
-          <img src={tankVertical} alt="Kentank vertical water tank" className="w-full rounded-2xl border-4 border-secondary/50 object-cover shadow-xl" />
+          <img
+            src={detailImage}
+            alt="Rafiki Roofing Mabati corrugated sheets"
+            className="w-full rounded-2xl border-4 border-secondary/50 object-cover shadow-xl"
+          />
         </div>
       </div>
     </section>
@@ -355,11 +512,26 @@ function WhyUs() {
 /* ---------- FAQ ---------- */
 function FAQ() {
   const faqs = [
-    { q: "How do I order?", a: "Pick your tank size and tap any WhatsApp button on this page, or fill the order form. We reply with confirmation and delivery details." },
-    { q: "Do you deliver?", a: "Yes — we offer delivery assistance to most areas in Kenya. Share your location on WhatsApp for a delivery quote." },
-    { q: "What sizes are available?", a: "We stock Kentank tanks from 1,000 litres up to 24,000 litres. See the Sizes section above." },
-    { q: "Can I call before ordering?", a: `Absolutely. Call us directly on ${PHONE_DISPLAY} for size advice and orders.` },
-    { q: "How do I know which size I need?", a: "Tell us your household size or use-case (home, school, farm, business) on WhatsApp and we'll recommend the right tank." },
+    {
+      q: "How do I order?",
+      a: "Pick your mabati profile and tap any WhatsApp button on this page, or fill the order form. We reply with confirmation, pricing and delivery details.",
+    },
+    {
+      q: "Do you deliver?",
+      a: "Yes — we offer delivery assistance to most areas in Kenya. Share your site location on WhatsApp for a delivery quote.",
+    },
+    {
+      q: "What profiles are available?",
+      a: "We handle box profile, corrugated, ordinary, versatile, romantile and roofing tile-style mabati. See the Profiles section above.",
+    },
+    {
+      q: "Can I call before ordering?",
+      a: `Absolutely. Call us directly on ${PHONE_DISPLAY} for profile guidance and orders.`,
+    },
+    {
+      q: "How do I know what quantity I need?",
+      a: "Share your roof measurements, plan or estimated sheet count on WhatsApp and we'll help you work through the order details.",
+    },
   ];
   return (
     <section id="faq" className="border-t border-border bg-muted/40 py-16">
@@ -367,7 +539,10 @@ function FAQ() {
         <SectionHeading eyebrow="FAQ" title="Frequently Asked Questions" />
         <div className="mt-8 space-y-3">
           {faqs.map((f) => (
-            <details key={f.q} className="group rounded-xl border border-border bg-card p-5 [&_summary::-webkit-details-marker]:hidden">
+            <details
+              key={f.q}
+              className="group rounded-xl border border-border bg-card p-5 [&_summary::-webkit-details-marker]:hidden"
+            >
               <summary className="flex cursor-pointer items-center justify-between gap-3 font-bold text-primary">
                 {f.q}
                 <span className="text-xl text-primary transition group-open:rotate-45">+</span>
@@ -386,10 +561,12 @@ function Contact() {
   return (
     <section id="contact" className="bg-background py-16 md:py-20">
       <div className="mx-auto max-w-5xl px-4">
-        <SectionHeading eyebrow="Contact" title="Talk To Us About Your Kentank Order" />
+        <SectionHeading eyebrow="Contact" title="Talk To Us About Your Rafiki Roofing Order" />
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           <a
-            href={wa("Hello, I'd like to order a Kentank water tank. Location: ____. Size: ____. Quantity: ____.")}
+            href={wa(
+              "Hello, I'd like to order Rafiki Roofing Mabati. Location: ____. Profile: ____. Gauge/colour: ____. Quantity/metres: ____.",
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
@@ -400,7 +577,10 @@ function Contact() {
             <h3 className="mt-4 text-lg font-bold text-primary">WhatsApp (preferred)</h3>
             <p className="mt-1 text-sm text-muted-foreground">{PHONE_DISPLAY}</p>
           </a>
-          <a href={`tel:+${WHATSAPP}`} className="rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
+          <a
+            href={`tel:+${WHATSAPP}`}
+            className="rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]"
+          >
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
               <Phone className="h-6 w-6" />
             </div>
@@ -422,7 +602,9 @@ function Contact() {
               <MapPin className="h-6 w-6" />
             </div>
             <h3 className="mt-4 text-lg font-bold text-primary">Service Area</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Nairobi & countrywide delivery assistance available.</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Nairobi & countrywide delivery assistance available.
+            </p>
           </div>
         </div>
       </div>
@@ -436,34 +618,69 @@ function Footer() {
     <footer className="border-t border-border bg-primary py-10 text-primary-foreground">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-3">
         <div>
-          <img src={logo} alt="Kentank logo" className="h-12 w-auto rounded bg-secondary p-1" />
+          <div className="flex items-center gap-3">
+            <span className="flex h-12 w-12 items-center justify-center rounded-md bg-secondary text-lg font-extrabold text-secondary-foreground">
+              R
+            </span>
+            <div>
+              <p className="text-base font-extrabold">Rafiki Roofing</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary-foreground/70">
+                Mabati
+              </p>
+            </div>
+          </div>
           <p className="mt-3 text-sm text-primary-foreground/75">
-            Order durable Kentank water tanks for homes, farms, schools and businesses.
-            Fast WhatsApp ordering and delivery assistance in Kenya.
+            Order quality mabati sheets for homes, rentals, shops and construction sites. Fast
+            WhatsApp ordering and delivery assistance in Kenya.
           </p>
         </div>
         <div>
-          <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--brand-yellow)" }}>Quick Links</h4>
+          <h4
+            className="text-sm font-bold uppercase tracking-wider"
+            style={{ color: "var(--brand-yellow)" }}
+          >
+            Quick Links
+          </h4>
           <ul className="mt-3 grid grid-cols-2 gap-y-1.5 text-sm">
-            {["Home", "Sizes", "Why", "Order", "Faq", "Contact"].map((l) => (
-              <li key={l}><a className="text-primary-foreground/85 hover:text-primary-foreground" href={`#${l.toLowerCase()}`}>{l}</a></li>
+            {["Home", "Profiles", "Why", "Order", "Faq", "Contact"].map((l) => (
+              <li key={l}>
+                <a
+                  className="text-primary-foreground/85 hover:text-primary-foreground"
+                  href={`#${l.toLowerCase()}`}
+                >
+                  {l}
+                </a>
+              </li>
             ))}
           </ul>
         </div>
         <div>
-          <h4 className="text-sm font-bold uppercase tracking-wider" style={{ color: "var(--brand-yellow)" }}>Get In Touch</h4>
+          <h4
+            className="text-sm font-bold uppercase tracking-wider"
+            style={{ color: "var(--brand-yellow)" }}
+          >
+            Get In Touch
+          </h4>
           <div className="mt-3 flex flex-col gap-2">
-            <a href={wa("Hello, I'd like to order a Kentank water tank.")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold text-secondary-foreground">
+            <a
+              href={wa("Hello, I'd like to order Rafiki Roofing Mabati.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-bold text-secondary-foreground"
+            >
               <MessageCircle className="h-4 w-4" /> WhatsApp Order
             </a>
-            <a href={`tel:+${WHATSAPP}`} className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/40 px-4 py-2 text-sm font-bold text-primary-foreground hover:bg-primary-foreground/10">
+            <a
+              href={`tel:+${WHATSAPP}`}
+              className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/40 px-4 py-2 text-sm font-bold text-primary-foreground hover:bg-primary-foreground/10"
+            >
               <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
             </a>
           </div>
         </div>
       </div>
       <div className="mx-auto mt-8 max-w-6xl border-t border-primary-foreground/15 px-4 pt-4 text-xs text-primary-foreground/60">
-        © {new Date().getFullYear()} Kentank Tanks Supplier. Independent Kentank water tank retailer.
+        © {new Date().getFullYear()} Rafiki Roofing Mabati. Quality roofing sheets supplier.
       </div>
     </footer>
   );
@@ -474,7 +691,9 @@ function FloatingActions() {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
       <a
-        href={wa("Hello, I'd like to order a Kentank water tank. Location: ____. Size: ____. Quantity: ____.")}
+        href={wa(
+          "Hello, I'd like to order Rafiki Roofing Mabati. Location: ____. Profile: ____. Gauge/colour: ____. Quantity/metres: ____.",
+        )}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp order"
@@ -494,7 +713,17 @@ function FloatingActions() {
 }
 
 /* ---------- Helpers ---------- */
-function SectionHeading({ eyebrow, title, subtitle, left }: { eyebrow?: string; title: string; subtitle?: string; left?: boolean }) {
+function SectionHeading({
+  eyebrow,
+  title,
+  subtitle,
+  left,
+}: {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  left?: boolean;
+}) {
   return (
     <div className={left ? "" : "text-center"}>
       {eyebrow && (
@@ -503,7 +732,11 @@ function SectionHeading({ eyebrow, title, subtitle, left }: { eyebrow?: string; 
         </span>
       )}
       <h2 className="mt-3 text-3xl font-extrabold text-primary md:text-4xl">{title}</h2>
-      {subtitle && <p className={`mt-3 text-muted-foreground ${left ? "" : "mx-auto max-w-2xl"}`}>{subtitle}</p>}
+      {subtitle && (
+        <p className={`mt-3 text-muted-foreground ${left ? "" : "mx-auto max-w-2xl"}`}>
+          {subtitle}
+        </p>
+      )}
     </div>
   );
 }

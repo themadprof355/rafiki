@@ -72,12 +72,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kentank Water Tanks | Order via WhatsApp" },
-      { name: "description", content: "Order durable Kentank water tanks by size and quantity. Send your location and tank size through WhatsApp or call directly." },
-      { name: "keywords", content: "Kentank tanks, water tanks Kenya, plastic water tanks, roto tanks, water storage tanks" },
-      { name: "author", content: "Kentank Tanks Supplier" },
-      { property: "og:title", content: "Kentank Water Tanks | Order via WhatsApp" },
-      { property: "og:description", content: "Durable Kentank water tanks for homes, farms, schools and businesses. Order on WhatsApp." },
+      { title: "Rafiki Roofing Mabati | Order via WhatsApp" },
+      {
+        name: "description",
+        content:
+          "Order quality Rafiki Roofing Mabati sheets by profile, gauge, colour and quantity. Send your location and roof details through WhatsApp or call directly.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Rafiki Roofing Mabati, mabati Kenya, roofing sheets Kenya, box profile mabati, corrugated mabati, versatile mabati",
+      },
+      { name: "author", content: "Rafiki Roofing Mabati" },
+      { property: "og:title", content: "Rafiki Roofing Mabati | Order via WhatsApp" },
+      {
+        property: "og:description",
+        content:
+          "Quality mabati roofing sheets for homes, rentals, shops and construction sites. Order on WhatsApp.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

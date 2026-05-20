@@ -76,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Order quality Rafiki Roofing Mabati sheets by profile, gauge, colour and quantity. Send your location and roof details through WhatsApp or call directly.",
+          "Order Rafiki Roofing Mabati by profile, sheet length and quantity. View current 2m, 2.5m and 3m prices, then send your location through WhatsApp or call directly.",
       },
       {
         name: "keywords",

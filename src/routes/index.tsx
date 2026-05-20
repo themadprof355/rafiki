@@ -17,8 +17,8 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const WHATSAPP = "254752552018";
-const PHONE_DISPLAY = "+254 752 552 018";
+const WHATSAPP = "254787429828";
+const PHONE_DISPLAY = "+254787 429828";
 const wa = (msg: string) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 type Product = {
@@ -26,15 +26,24 @@ type Product = {
   image: string;
   use: string;
   benefits: string[];
+  lengthPrices: Array<{ lengthM: string; priceKsh: number }>;
+  pricePerMetre?: number;
+  priceNote?: string;
   badge?: string;
 };
 
 const products: Product[] = [
   {
-    name: "Box Profile Mabati",
+    name: "Box Profile Gauge 30 Mabati",
     image: "/images/Box profile mabati.jpeg",
     use: "Modern homes & commercial roofs",
-    benefits: ["Clean angular profile", "Strong water run-off", "Available in multiple gauges"],
+    benefits: ["Clean angular profile", "Gauge 30 sheets", "Strong water run-off"],
+    pricePerMetre: 400,
+    lengthPrices: [
+      { lengthM: "2m", priceKsh: 800 },
+      { lengthM: "2.5m", priceKsh: 1000 },
+      { lengthM: "3m", priceKsh: 1200 },
+    ],
     badge: "Popular",
   },
   {
@@ -46,38 +55,83 @@ const products: Product[] = [
       "Lightweight and practical",
       "Great for fast installation",
     ],
+    pricePerMetre: 350,
+    lengthPrices: [
+      { lengthM: "2m", priceKsh: 700 },
+      { lengthM: "2.5m", priceKsh: 850 },
+      { lengthM: "3m", priceKsh: 1050 },
+    ],
   },
   {
-    name: "Romantile Mabati",
-    image: "/images/Romantile-mabati.jpeg",
-    use: "Premium residential roofing",
-    benefits: ["Tile-look finish", "Elegant curb appeal", "Durable coated sheets"],
+    name: "Versatile Mabati Gauge 30",
+    image: "/images/Versatile-mabati.jpeg",
+    use: "Bungalows & maisonettes",
+    benefits: ["Distinctive tile pattern", "Gauge 30 sheets", "Ideal for visible roof designs"],
+    pricePerMetre: 550,
+    lengthPrices: [
+      { lengthM: "2m", priceKsh: 1100 },
+      { lengthM: "2.5m", priceKsh: 1350 },
+      { lengthM: "3m", priceKsh: 1650 },
+    ],
     badge: "Premium Look",
   },
   {
-    name: "Versatile Mabati",
-    image: "/images/Versatile-mabati.jpeg",
-    use: "Bungalows & maisonettes",
-    benefits: ["Distinctive tile pattern", "Neat overlap lines", "Ideal for visible roof designs"],
-  },
-  {
-    name: "Ordinary Mabati",
+    name: "Ordinary Dumuzaz Gauge 30",
     image: "/images/Ordinary-mabati.jpeg",
     use: "Budget builds & extensions",
-    benefits: ["Affordable roofing option", "Reliable everyday cover", "Easy to replace or extend"],
+    benefits: ["Affordable roofing option", "Gauge 30 sheets", "Reliable everyday cover"],
+    pricePerMetre: 300,
+    lengthPrices: [
+      { lengthM: "2m", priceKsh: 600 },
+      { lengthM: "2.5m", priceKsh: 750 },
+      { lengthM: "3m", priceKsh: 900 },
+    ],
     badge: "Best Value",
   },
   {
-    name: "Roofing Tiles Mabati",
-    image: "/images/Roofing-tiles-mabati.jpeg",
-    use: "Decorative roof finishes",
-    benefits: ["Tile-inspired appearance", "Weather-ready surface", "Suited to statement roofs"],
+    name: "Reject Ordinary Mabati",
+    image: "/images/Ordinary mabati.jpeg",
+    use: "Low-cost roofing deals",
+    benefits: ["Reject mabati available", "Lowest listed sheet prices", "Good for budget work"],
+    priceNote: "Reject ordinary mabati",
+    lengthPrices: [
+      { lengthM: "2m", priceKsh: 300 },
+      { lengthM: "2.5m", priceKsh: 350 },
+      { lengthM: "3m", priceKsh: 450 },
+    ],
+    badge: "Reject Deal",
+  },
+  {
+    name: "Reject Box Profile Mabati",
+    image: "/images/Box-profile-mabati.jpeg",
+    use: "Low-cost box profile deals",
+    benefits: ["Reject mabati available", "Box profile finish", "Budget-friendly sheets"],
+    priceNote: "Reject box profile mabati",
+    lengthPrices: [
+      { lengthM: "2m", priceKsh: 400 },
+      { lengthM: "2.5m", priceKsh: 500 },
+      { lengthM: "3m", priceKsh: 600 },
+    ],
+    badge: "Reject Deal",
   },
 ];
 
 const heroImage = "/images/Box-profile-mabati.jpeg";
 const detailImage = "/images/Corrugated mabati.jpeg";
 const logoImage = "/images/rafiki-logo.jpeg";
+
+const formatKsh = (amount: number) => `KSh ${amount.toLocaleString("en-KE")}`;
+
+const priceRateLabel = (product: Product) =>
+  product.pricePerMetre
+    ? `${formatKsh(product.pricePerMetre)} per metre`
+    : (product.priceNote ?? "Price on request");
+
+const lengthPriceSummary = (product: Product) =>
+  product.lengthPrices.map((price) => `${price.lengthM}: ${formatKsh(price.priceKsh)}`).join(", ");
+
+const productPriceSummary = (product: Product) =>
+  `${priceRateLabel(product)}. ${lengthPriceSummary(product)}`;
 
 function HomePage() {
   return (
@@ -168,14 +222,14 @@ function Hero() {
             Quality Mabati Roofing Sheets Delivered Near You
           </h1>
           <p className="mt-4 max-w-lg text-base text-primary/85 md:text-lg">
-            Shop box profile, corrugated, ordinary, versatile and tile-look mabati for homes,
-            rentals, shops and site projects. Send your roof details on WhatsApp for quick guidance,
-            pricing and delivery assistance.
+            Shop box profile, corrugated, ordinary, versatile and reject mabati for homes, rentals,
+            shops and site projects. Current 2m, 2.5m and 3m prices are listed below for quick
+            WhatsApp ordering and delivery assistance.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a
               href={wa(
-                "Hello, I want to order Rafiki Roofing Mabati. Profile: ____. Gauge: ____. Quantity/metres: ____. Location: ____.",
+                "Hello, I want to order Rafiki Roofing Mabati. Profile: ____. Sheet length: ____. Quantity: ____. Location: ____.",
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -195,7 +249,7 @@ function Hero() {
               <Check className="h-4 w-4" /> Multiple profiles
             </li>
             <li className="inline-flex items-center gap-1.5">
-              <Check className="h-4 w-4" /> Gauge options
+              <Check className="h-4 w-4" /> Current prices
             </li>
             <li className="inline-flex items-center gap-1.5">
               <Check className="h-4 w-4" /> Delivery help
@@ -222,8 +276,8 @@ function Profiles() {
       <div className="mx-auto max-w-6xl px-4">
         <SectionHeading
           eyebrow="Mabati Profiles"
-          title="Choose Your Roofing Style"
-          subtitle="Browse common Rafiki Roofing Mabati profiles and send your preferred sheet type, gauge, colour and location on WhatsApp."
+          title="Choose Your Sheet and Price"
+          subtitle="Current prices for 2m, 2.5m and 3m mabati sheets. Tap a product to send the profile, length and price guide on WhatsApp."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
@@ -236,7 +290,12 @@ function Profiles() {
 }
 
 function ProductCard({ product }: { product: Product }) {
-  const msg = `Hello, I want to order/enquire about Rafiki Roofing Mabati. Profile: ${product.name}. Gauge: [your gauge]. Colour: [your colour]. Quantity/metres: [amount]. Location: [your location].`;
+  const msg = `Hello, I want to order/enquire about Rafiki Roofing Mabati.
+Profile: ${product.name}
+Price guide: ${productPriceSummary(product)}
+Sheet length: [2m / 2.5m / 3m]
+Quantity: [number of sheets]
+Location: [your location]`;
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]">
       {product.badge && (
@@ -266,6 +325,19 @@ function ProductCard({ product }: { product: Product }) {
             </li>
           ))}
         </ul>
+        <div className="mt-4 rounded-lg bg-muted/60 p-3">
+          <p className="text-sm font-extrabold text-primary">{priceRateLabel(product)}</p>
+          <div className="mt-2 grid grid-cols-3 gap-2 text-center text-sm">
+            {product.lengthPrices.map((price) => (
+              <div key={price.lengthM} className="rounded-md bg-background px-2 py-2">
+                <p className="font-bold text-primary">{price.lengthM}</p>
+                <p className="text-xs font-semibold text-muted-foreground">
+                  {formatKsh(price.priceKsh)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
         <a
           href={wa(msg)}
           target="_blank"
@@ -295,7 +367,7 @@ function Trust() {
     {
       icon: MessageCircle,
       title: "Easy WhatsApp Ordering",
-      desc: "Send your location, profile, gauge and quantity for a fast reply.",
+      desc: "Send your location, profile, length and sheet quantity for a fast reply.",
     },
     {
       icon: Truck,
@@ -305,7 +377,7 @@ function Trust() {
     {
       icon: Ruler,
       title: "Profile & Gauge Advice",
-      desc: "Get help choosing a practical sheet style for your roof.",
+      desc: "Get help choosing a practical sheet style and length for your roof.",
     },
     {
       icon: Palette,
@@ -339,20 +411,39 @@ function OrderForm() {
     name: "",
     location: "",
     profile: products[0].name,
-    gauge: "",
+    length: products[0].lengthPrices[0].lengthM,
+    colour: "",
     quantity: "",
     note: "",
   });
   const [error, setError] = useState<string | null>(null);
+  const selectedProduct = products.find((product) => product.name === form.profile) ?? products[0];
+  const selectedLengthPrice = selectedProduct.lengthPrices.find(
+    (price) => price.lengthM === form.length,
+  );
+  const selectedPrice = selectedLengthPrice
+    ? `${selectedLengthPrice.lengthM} @ ${formatKsh(selectedLengthPrice.priceKsh)}`
+    : "Confirm custom length price on WhatsApp";
+  const selectedLengthLabel =
+    form.length === "custom" ? "Other length - confirm by WhatsApp" : form.length;
   const set =
     (k: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
-      setForm({ ...form, [k]: e.target.value });
+      setForm((current) => ({ ...current, [k]: e.target.value }));
+
+  const setProfile = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const nextProduct = products.find((product) => product.name === e.target.value) ?? products[0];
+    setForm((current) => ({
+      ...current,
+      profile: nextProduct.name,
+      length: nextProduct.lengthPrices[0].lengthM,
+    }));
+  };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.location.trim() || !form.profile || !form.quantity) {
-      setError("Please fill in your name, location, mabati profile and quantity.");
+      setError("Please fill in your name, location, mabati profile, sheet length and quantity.");
       return;
     }
     setError(null);
@@ -360,8 +451,11 @@ function OrderForm() {
 Name: ${form.name.trim()}
 Location: ${form.location.trim()}
 Profile: ${form.profile}
-Gauge/colour: ${form.gauge.trim() || "-"}
-Quantity/metres: ${form.quantity}
+Sheet length: ${selectedLengthLabel}
+Listed price: ${selectedPrice}
+Quantity: ${form.quantity}
+Colour: ${form.colour.trim() || "-"}
+Price guide: ${productPriceSummary(selectedProduct)}
 Note: ${form.note.trim() || "-"}`;
     window.open(wa(msg), "_blank", "noopener");
   };
@@ -377,8 +471,8 @@ Note: ${form.note.trim() || "-"}`;
             Send Your Mabati Order on WhatsApp
           </h2>
           <p className="mt-2 text-primary/80">
-            Fill in a few roof details and we'll reply on WhatsApp with confirmation, pricing and
-            delivery info.
+            Fill in a few roof details and we'll reply on WhatsApp with confirmation and delivery
+            info.
           </p>
         </div>
         <form
@@ -407,33 +501,47 @@ Note: ${form.note.trim() || "-"}`;
               />
             </Field>
             <Field label="Mabati profile">
-              <select value={form.profile} onChange={set("profile")} className="kt-input">
+              <select value={form.profile} onChange={setProfile} className="kt-input">
                 {products.map((p) => (
                   <option key={p.name} value={p.name}>
-                    {p.name} — {p.use}
+                    {p.name} - {priceRateLabel(p)}
                   </option>
                 ))}
               </select>
             </Field>
-            <Field label="Gauge / colour">
-              <input
-                maxLength={80}
-                value={form.gauge}
-                onChange={set("gauge")}
-                className="kt-input"
-                placeholder="Gauge 30, charcoal grey"
-              />
+            <Field label="Sheet length">
+              <select value={form.length} onChange={set("length")} className="kt-input">
+                {selectedProduct.lengthPrices.map((price) => (
+                  <option key={price.lengthM} value={price.lengthM}>
+                    {price.lengthM} - {formatKsh(price.priceKsh)}
+                  </option>
+                ))}
+                <option value="custom">Other length - confirm by WhatsApp</option>
+              </select>
             </Field>
-            <Field label="Quantity / metres">
+            <Field label="Quantity">
               <input
-                required
                 maxLength={80}
+                required
                 value={form.quantity}
                 onChange={set("quantity")}
                 className="kt-input"
-                placeholder="40 sheets or 120 metres"
+                placeholder="40 sheets"
               />
             </Field>
+            <Field label="Colour">
+              <input
+                maxLength={80}
+                value={form.colour}
+                onChange={set("colour")}
+                className="kt-input"
+                placeholder="Charcoal grey"
+              />
+            </Field>
+          </div>
+          <div className="rounded-lg bg-muted/60 p-3 text-sm">
+            <p className="font-bold text-primary">Selected price: {selectedPrice}</p>
+            <p className="mt-1 text-muted-foreground">{productPriceSummary(selectedProduct)}</p>
           </div>
           <Field label="Optional note">
             <textarea
@@ -468,7 +576,7 @@ function WhyUs() {
     { title: "Fast response", desc: "We reply quickly on WhatsApp during business hours." },
     {
       title: "Quality roofing profiles",
-      desc: "Box profile, corrugated, ordinary, versatile and tile-look mabati.",
+      desc: "Box profile, corrugated, ordinary, versatile and reject mabati.",
     },
     {
       title: "Help choosing the right profile",
@@ -517,7 +625,7 @@ function FAQ() {
   const faqs = [
     {
       q: "How do I order?",
-      a: "Pick your mabati profile and tap any WhatsApp button on this page, or fill the order form. We reply with confirmation, pricing and delivery details.",
+      a: "Pick your mabati profile, sheet length and quantity, then tap any WhatsApp button or fill the order form. We reply with confirmation and delivery details.",
     },
     {
       q: "Do you deliver?",
@@ -525,7 +633,7 @@ function FAQ() {
     },
     {
       q: "What profiles are available?",
-      a: "We handle box profile, corrugated, ordinary, versatile, romantile and roofing tile-style mabati. See the Profiles section above.",
+      a: "We handle box profile gauge 30, corrugated, versatile gauge 30, ordinary Dumuzaz gauge 30, reject ordinary and reject box profile mabati. See the Profiles section above.",
     },
     {
       q: "Can I call before ordering?",
@@ -568,7 +676,7 @@ function Contact() {
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           <a
             href={wa(
-              "Hello, I'd like to order Rafiki Roofing Mabati. Location: ____. Profile: ____. Gauge/colour: ____. Quantity/metres: ____.",
+              "Hello, I'd like to order Rafiki Roofing Mabati. Location: ____. Profile: ____. Sheet length: ____. Quantity: ____.",
             )}
             target="_blank"
             rel="noopener noreferrer"
@@ -697,7 +805,7 @@ function FloatingActions() {
     <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
       <a
         href={wa(
-          "Hello, I'd like to order Rafiki Roofing Mabati. Location: ____. Profile: ____. Gauge/colour: ____. Quantity/metres: ____.",
+          "Hello, I'd like to order Rafiki Roofing Mabati. Location: ____. Profile: ____. Sheet length: ____. Quantity: ____.",
         )}
         target="_blank"
         rel="noopener noreferrer"

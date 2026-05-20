@@ -77,6 +77,7 @@ const products: Product[] = [
 
 const heroImage = "/images/Box-profile-mabati.jpeg";
 const detailImage = "/images/Corrugated mabati.jpeg";
+const logoImage = "/images/rafiki-logo.jpeg";
 
 function HomePage() {
   return (
@@ -112,9 +113,11 @@ function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <a href="#home" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-lg font-extrabold text-primary-foreground shadow-sm">
-            R
-          </span>
+          <img
+            src={logoImage}
+            alt="Rafiki Roofing Mabati logo"
+            className="h-12 w-12 rounded-md object-cover shadow-sm"
+          />
           <span className="leading-tight">
             <span className="block text-sm font-extrabold text-primary md:text-base">
               Rafiki Roofing
@@ -619,9 +622,11 @@ function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 items-center justify-center rounded-md bg-secondary text-lg font-extrabold text-secondary-foreground">
-              R
-            </span>
+            <img
+              src={logoImage}
+              alt="Rafiki Roofing Mabati logo"
+              className="h-14 w-14 rounded-md object-cover"
+            />
             <div>
               <p className="text-base font-extrabold">Rafiki Roofing</p>
               <p className="text-xs font-semibold uppercase tracking-wide text-primary-foreground/70">
